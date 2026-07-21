@@ -1,5 +1,7 @@
 # Week 3. Remote Backend (S3 + DynamoDB) `[비대면]`
 
+> 📘 **[이번 주 강의자료(핸즈온 워크북) PDF »](./lecture/강의자료.pdf)** — 실습은 이 문서를 위에서 아래로 따라가며 진행합니다.
+
 > 이번 주가 끝나면: **로컬 `tfstate`를 S3 원격 backend로 옮기고, DynamoDB로 state 잠금을 이해한다.**
 
 ## 0. 메타 정보
