@@ -21,7 +21,7 @@ submissions/
 │   │   ├── providers.tf
 │   │   ├── versions.tf
 │   │   └── example.tfvars
-│   ├── state-list.txt          # destroy 전에 저장한 증빙 (마스킹 필수)
+│   ├── state-list.txt          # destroy 후 빈 출력 (마스킹 필수)
 │   ├── s3-object.png           # S3 에 tfstate 올라간 화면 (마스킹 필수)
 │   └── observations.md         # 워크북 [관찰 ✍️] 답안
 └── {your-github-id}/
@@ -50,7 +50,7 @@ submissions/
 
 ## 마스킹 명령
 
-`practice/app`에서 destroy **전에** 실행합니다. `ID`를 본인 GitHub ID로 바꾸세요.
+`practice/app`에서 destroy **후에** 실행합니다(실습워크북 C-4). `ID`를 본인 GitHub ID로 바꾸세요.
 
 ```bash
 ID=본인-github-id
@@ -75,4 +75,4 @@ git status --porcelain | grep -E 'terraform\.tfvars|\.tfstate|\.pem'
 
 저장한 뒤 **파일을 한 번 눈으로 읽고** 커밋하세요. 스크린샷은 명령으로 걸러지지 않으니 직접 가려야 합니다.
 
-자세한 절차는 [실습워크북 C-4 · C-6](../lecture/실습워크북.md)과 [과제 문서](../assignment/ASSIGNMENT.md).
+자세한 절차는 [실습워크북 C-4 · C-5](../lecture/실습워크북.md)과 [과제 문서](../assignment/ASSIGNMENT.md).

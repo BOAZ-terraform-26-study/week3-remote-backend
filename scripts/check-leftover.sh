@@ -118,7 +118,7 @@ if [ -n "${TABLES// /}" ]; then
   for t in $TABLES; do
     n=$(aws dynamodb scan --region "$R" --table-name "$t" \
       --query 'Count' --output text 2>/dev/null)
-    printf '        └ 항목 %s개 (평상시 0개. 1개면 잠금이 남아 있습니다)\n' "${n:-?}"
+    printf '        └ 항목 %s개 (잠금 항목은 apply 중에만. 나머지는 state 체크섬)\n' "${n:-?}"
   done
 else
   printf '  확인  %-30s 없음\n' "잠금 DynamoDB 테이블"
