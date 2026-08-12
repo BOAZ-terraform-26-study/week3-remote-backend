@@ -4,7 +4,7 @@ output "bucket_name" {
 }
 
 output "table_name" {
-  description = "state 잠금용 DynamoDB 테이블 이름. app/backend.tf 의 dynamodb_table 에 넣습니다"
+  description = "잠금용 DynamoDB 테이블 이름. app/backend.tf 의 dynamodb_table 에 넣습니다"
   value       = aws_dynamodb_table.tflock.name
 }
 
