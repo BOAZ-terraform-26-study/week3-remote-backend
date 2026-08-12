@@ -12,7 +12,7 @@
 - [ ] bootstrap 스택의 S3·DynamoDB는 **지우지 않았습니다** (7주차까지 유지)
 - [ ] `git diff`로 자격증명 · `terraform.tfvars` · `*.tfstate` · `state.json` · `*.pem`이 커밋되지 않았는지 확인
 - [ ] 스크린샷과 로그의 계정번호 12자리 · 공인 IP를 가렸습니다
-- [ ] `submissions/<id>/observations.md`에 `[관찰 ✍️]` 답을 적었습니다 (A-2 · A-6 · B-3 · B-7)
+- [ ] `submissions/<id>/observations.md`에 `[관찰 ✍️]` 답을 적었습니다 (A-2 · A-6 · B-3 · B-6 · B-7 · C-3)
 - [ ] `practice/` 아래 파일을 고치지 않았습니다 (`git diff --name-only origin/main`으로 확인)
 
 ### 오늘 만든 것 (요약)
