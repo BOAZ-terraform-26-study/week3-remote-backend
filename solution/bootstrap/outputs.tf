@@ -9,7 +9,7 @@ output "table_name" {
 }
 
 # app/backend.tf 에 붙여 넣을 다섯 줄을 그대로 출력합니다.
-# 손으로 옮겨 적다가 버킷 이름을 틀리면 init 이 NoSuchBucket 으로 죽습니다.
+# 직접 옮겨 적다가 버킷 이름을 틀리면 init 이 NoSuchBucket 으로 실패합니다.
 # 복사해서 붙이면 그 사고가 없어집니다.
 #
 # 꺼내는 명령: terraform output -raw backend_config

@@ -5,7 +5,7 @@
 # TODO(A-4) ⑦: table_name   ( value = aws_dynamodb_table.tflock.name )
 
 # TODO(A-4) ⑧: backend.tf 에 붙여 넣을 다섯 줄을 그대로 출력
-#   손으로 옮겨 적다가 버킷 이름을 틀리면 init 이 NoSuchBucket 으로 죽습니다.
+#   직접 옮겨 적다가 버킷 이름을 틀리면 init 이 NoSuchBucket 으로 실패합니다.
 #   복사해서 붙이면 그 사고가 없어집니다.
 #
 #   output "backend_config" {

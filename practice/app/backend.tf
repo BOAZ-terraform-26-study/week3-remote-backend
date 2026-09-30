@@ -5,7 +5,7 @@
 # 옮길 state가 있어야 -migrate-state 가 옮길 것이 생깁니다.
 #
 # backend 블록에는 변수를 쓸 수 없습니다. var.project_name 을 넣을 수 없으니
-# bootstrap 스택의 output 값을 손으로 넣어야 합니다. 이유는 개념워크북 4번.
+# bootstrap 스택의 output 값을 직접 넣어야 합니다. 이유는 개념워크북 4번.
 #
 # TODO(B-4): 아래 주석을 풀고 bucket 과 dynamodb_table 을
 #            `terraform output -raw backend_config` 결과로 바꾸세요.
