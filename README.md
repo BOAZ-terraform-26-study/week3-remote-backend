@@ -19,18 +19,18 @@
 - [ ] state 잠금이 언제 걸리는지 동시 apply로 재현할 수 있습니다
 
 ## 2. 사전 예습 (필수)
-- `lecture/개념워크북.md`의 Part 0 · 1 · 4 · 5를 읽어 오세요. 라이브에서는 Part 2 · 3 · 6만 짚습니다.
+- `lecture/개념워크북.md`의 Part 0 · 1 · 4 · 5를 읽어 오세요. 라이브에서는 Part 2 · 3 · 6만 다룹니다.
 - HashiCorp: [Backend block](https://developer.hashicorp.com/terraform/language/backend) · [S3 backend](https://developer.hashicorp.com/terraform/language/backend/s3) (15분)
 - 예습 체크: "backend 블록에 변수를 못 쓰는 이유"를 안다. 답은 개념워크북 4번입니다.
 
 ## 3. 진행 타임박스 (60분)
 | 시간 | 구성 | 내용 |
 |------|------|------|
-| 0~10분 | 회고 | 랜덤 지목 |
+| 0~10분 | 회고 | 무작위 지명 |
 | 10~55분 | 실습 45분 | Block A 저장소 만들기 · Block B 원격 이전과 잠금 · Block C 정리 |
 | 55~60분 | 마무리 | 과제② 브리핑, 4주차 예고 |
 
-## 4. 실습 개요: 왜 2단 구조인가
+## 4. 실습 개요: 왜 스택을 둘로 나누는가
 
 state를 담을 S3 버킷도 Terraform으로 만들고 싶은데, 그것을 만드는 apply의 state는 어디에 둘까요. 저장소가 아직 없습니다. 이 닭-달걀 문제를 스택 두 개로 나눠 풉니다.
 
@@ -82,8 +82,8 @@ terraform state list                  # 빈 출력이어야 정상
 | `backend.tf`에 `var.` 못 씀 | init이 backend를 먼저 초기화하고 그때는 변수가 평가되지 않음 | 값 직접 입력 또는 `-backend-config` 파일 |
 | `NoSuchBucket` on init | 버킷 이름 오타 또는 bootstrap 미실행 | `terraform output -raw backend_config` 출력과 대조 |
 | `AccessDenied` on init | IAM 권한 부족 | 개념워크북 Part 3의 권한 목록 |
-| migrate 후 `7 to add` | state가 옮겨지지 않음 | 멈추고 질문. 그대로 apply하면 리소스가 두 벌 생깁니다 |
-| 잠금이 남은 채 크래시 | 비정상 종료 | 아무도 작업 안 하는 것 확인 후 `terraform force-unlock <LOCK_ID>` |
+| migrate 후 `7 to add` | state가 옮겨지지 않음 | 멈추고 질문. 그대로 apply하면 리소스가 중복으로 생깁니다 |
+| 잠금이 해제되지 않은 채 남음 | 비정상 종료 | 아무도 작업 안 하는 것 확인 후 `terraform force-unlock <LOCK_ID>` |
 | `dynamodb_table` deprecated 경고 | Terraform 1.10+ 는 `use_lockfile` 권장 | 정상입니다. 잠금을 콘솔에서 보려고 DynamoDB를 씁니다 |
 | DynamoDB 과금 걱정 | `PROVISIONED`는 쓰지 않아도 과금 | 반드시 `PAY_PER_REQUEST`. 온디맨드 요청은 프리티어 대상이 아니지만 서울 리전 쓰기 100만 건 $0.68이라 실습 규모에서는 $0.00입니다 |
 
@@ -95,9 +95,9 @@ terraform state list                  # 빈 출력이어야 정상
 
 | 오늘 본 것 | Week4에서 문제가 되는 지점 |
 |-----------|--------------------------|
-| `backend.tf`에 버킷 이름을 손으로 적었습니다 | backend는 변수를 못 받습니다. 나머지 값은 어디까지 뺄 수 있을까요 |
+| `backend.tf`에 버킷 이름을 직접 적었습니다 | backend는 변수를 못 받습니다. 나머지 값은 어디까지 분리할 수 있을까요 |
 | `project_name` 하나로 리소스 12개 이름을 조립했습니다 | 이름 목록 자체가 여러 개라면 (`for_each` vs `count`) |
-| 같은 조립식을 여러 파일에 반복했습니다 | 한 곳에 모으는 자리가 필요합니다 (`locals`) |
+| 같은 조립식을 여러 파일에 반복했습니다 | 한 곳에 모아 관리할 방법이 필요합니다 (`locals`) |
 
 - Week4(대면): 변수와 반복. variables/outputs, `for_each`로 하드코딩 제거
 - 예습: `variable` 타입(map/list/object), `for_each` vs `count`, `locals`
@@ -105,8 +105,8 @@ terraform state list                  # 빈 출력이어야 정상
 ---
 
 > [!CAUTION]
-> **비용.** app 스택은 시간당 $0.019입니다. destroy를 잊고 한 달 두면 약 $13.87이 나갑니다. bootstrap의 S3·DynamoDB는 한 달 $0.01 미만이라 7주차까지 남겨 둡니다. stop은 destroy가 아닙니다. 인스턴스를 멈춰도 EBS 8GiB의 월 $0.73은 계속 나갑니다.
+> **비용.** app 스택은 시간당 $0.019입니다. destroy를 잊고 한 달 두면 약 $13.87이 발생합니다. bootstrap의 S3·DynamoDB는 한 달 $0.01 미만이라 7주차까지 남겨 둡니다. stop은 destroy가 아닙니다. 인스턴스를 멈춰도 EBS 8GiB의 월 $0.73은 계속 발생합니다.
 >
 > **올리면 안 되는 값.** 본인 공인 IP · AWS 계정번호 12자리 · 액세스 키 · `terraform.tfvars` · `terraform.tfstate` · `state.json` · `.pem` 파일. 마스킹 절차는 실습워크북 C-4에 있습니다.
 
-> **제출.** `submissions/{본인-github-id}/`에 PR로 올립니다. `practice/`는 직접 고쳐 올리지 마세요. 머지되는 순간 다음 사람의 빈칸이 사라집니다.
+> **제출.** `submissions/{본인-github-id}/`에 PR로 올립니다. `practice/`는 직접 고쳐 올리지 마세요. 머지되는 순간 다음 사람이 풀 빈칸이 없어집니다.

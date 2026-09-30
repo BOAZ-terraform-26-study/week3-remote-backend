@@ -16,5 +16,5 @@ terraform output -raw backend_config # app/backend.tf 에 붙여 넣을 다섯 �
 > [!CAUTION]
 > `terraform.tfstate` 파일을 지우지 마세요. 이 파일은 `.gitignore` 대상이라 커밋되지 않고,
 > 7주차에 버킷과 테이블을 지울 때 필요한 유일한 기록입니다. 파일을 잃으면
-> `terraform destroy` 로 지울 수 없고 콘솔에서 손으로 지워야 합니다.
+> `terraform destroy` 로 지울 수 없고 콘솔에서 직접 지워야 합니다.
 > 폴더를 백업해 두거나, 버킷 이름과 테이블 이름을 따로 적어 두세요.

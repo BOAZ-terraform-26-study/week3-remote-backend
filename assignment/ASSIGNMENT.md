@@ -32,9 +32,9 @@
 - [ ] 스크린샷과 로그의 계정번호 12자리 · 공인 IP를 가렸습니다
 
 > [!CAUTION]
-> `terraform.tfvars` · `terraform.tfstate` · `*.backup` · `state.json` · `backend.hcl` · `.pem` 파일은 올리지 않습니다. `.gitignore`가 막고 있지만 푸시 전에 `git status`로 한 번 더 확인하세요. 마스킹 명령은 실습워크북 C-4에 있습니다.
+> `terraform.tfvars` · `terraform.tfstate` · `*.backup` · `state.json` · `backend.hcl` · `.pem` 파일은 올리지 않습니다. `.gitignore`로 제외되어 있지만 푸시 전에 `git status`로 한 번 더 확인하세요. 마스킹 명령은 실습워크북 C-4에 있습니다.
 >
-> `practice/`를 직접 고쳐 올리지 마세요. 머지되는 순간 다음 사람의 빈칸이 사라집니다.
+> `practice/`를 직접 고쳐 올리지 마세요. 머지되는 순간 다음 사람이 풀 빈칸이 없어집니다.
 
 ## 다음 주 예습
 
